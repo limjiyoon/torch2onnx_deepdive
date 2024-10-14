@@ -1,0 +1,103 @@
+[project]
+name = "torch2onnx-deepdive"
+version = "0.1.0"
+description = "A comprehensive analysis and exploration of PyTorch's nn.Module to ONNX conversion process. This project aims to provide insights into the internals of the conversion mechanism, offering tools and examples to help developers understand and optimize ONNX exports from PyTorch models."
+authors = [
+    { name = "limjiyoon", email = "luinpark@gmail.com" }
+]
+dependencies = [
+    "torch>=2.4.1",
+]
+readme = "README.md"
+requires-python = ">= 3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/torch2onnx_deepdive"]
+
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# Same as Black.
+line-length = 120
+show-source = true
+
+# Assume Python 3.11.
+target-version = "py311"
+
+
+[lint]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "N",  # pep-naming
+    "D",  # pydocstyle
+    "B",  # flakes-bugbear
+    "ANN",# flakes-annotations
+    "A",  # flakes-builtins
+    "COM",# flakes-commas
+    "T10",# flakes-debugger
+    "SIM",# flakes-simplify
+    "ARG",# flakes-unused-arguments
+    "PLC",# pylint-convention
+    "PLE",# pylint-errors
+    "UP",  # pyupgrade
+    "PL"  # pylint
+]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["I", "COM", "PLC", "UP010"]
+ignore = ["D104", "D406", "D407", "D408", "D409", "D203", "D213", "D417", "B905", "ANN002", "ANN003", "ANN101", "ANN102", "ANN401", "ANN204", "COM812", "D107", "N812"]
+
+[format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+pylint = {"max-args"=12, "max-statements"=60}
+
+[tool.pyright]
+include = ["torch2onnx_deepdive"]
+reportMissingImports = true
+
